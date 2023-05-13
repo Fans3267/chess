@@ -1,6 +1,7 @@
-//北科附工 913432樊立康, 913435龎世承 ,913417孫晢志
 //僅用於專題報告
+//北科附工 913432樊立康 組員: 913435龎世承, 913417孫晢志
 
+//宣告陣列以及變數
 String chess[8][8]={
   {"BT","BH","BB","BQ","BK","BB","BH","BT"},
   {"BS","BS","BS","BS","BS","BS","BS","BS"},
@@ -21,7 +22,8 @@ int color,tookup=0;
 String temp;
 
 void setup() {
-  // put your setup code here, to run once:
+
+//宣告腳位
 for(int f=0;f<8;f++){
  pinMode(zhi[f], OUTPUT);
  digitalWrite(zhi[f],HIGH);
@@ -36,7 +38,8 @@ for(int f=0;f<8;f++){
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
+//led邏輯主程式
  for(int r=0;r<8;r++){
   digitalWrite(zhi[r],LOW);
   for(int c=0;c<8;c++){
@@ -252,6 +255,8 @@ void loop() {
   digitalWrite(zhi[r],HIGH);
   }
 
+
+//checker陣列偵測副程式
   if(tookup == 1){
   for(int a=0;a<8;a++){
     for(int b=0;b<8;b++){
@@ -262,6 +267,8 @@ void loop() {
       }
     }
   }
+
+//資料轉移副程式
 while(tookup == 1){
  for(int x=0;x<8;x++){
   digitalWrite(zhi[x],LOW);
@@ -279,19 +286,18 @@ while(tookup == 1){
          checker[x][y]=0;
        }
      }
-      
     if(digitalRead(hen[y]) == LOW){
       if(checker[x][y] == 0 && ledout[x][y] == 1){
         chess[x][y] = temp;
         tookup = 0;
         }
        }
-      
-      
     }
     digitalWrite(zhi[x],HIGH);
    }
   }
+
+//清除led陣列副程式
   if(tookup == 0){
     for(int x=0;x<8;x++){
       for(int y=0;y<8;y++){
@@ -299,6 +305,4 @@ while(tookup == 1){
         }
       }
     }
-
-  
 }
